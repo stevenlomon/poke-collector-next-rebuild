@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Navbar from "./components/Navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,17 +18,19 @@ export const metadata: Metadata = {
   description: "Made with love by Steven :)",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    // Adding suppressHydrationWarning here to reinforce that the Browser-hydrated HTML only differs due to extensions which is outside of our control. Zero warnings or errors in Incognito mode!
+    <html lang="en" suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`} >
+      <body className="min-h-full flex flex-col">
+        {/* Our interactive not-changin-on-page-change navbar. The only JS that the Browser downloads when serving the page! */}
+        <Navbar />
+        
+        {/* Our <Outlet /> equivalent! */}
+        <main>
+          {children}
+        </main>
+      </body>
     </html>
   );
 }
