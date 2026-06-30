@@ -26,4 +26,4 @@ export async function GET(_request: Request, { params }: { params: Promise<{ id:
   } catch (err) {
     return new NextResponse("Image not found", { status: 404 });
   }
-}
+};
