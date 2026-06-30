@@ -1,7 +1,7 @@
 'use client' // This state will live in the Browser!
 
 import { createContext, useContext, useState } from 'react';
-import { PokemonCard, CollectionItem } from '../lib/types';
+import { PokemonCard, CollectionItem } from '@/lib/types';
 
 interface CollectionContextType {
   userCollection: CollectionItem[]; // A User Collection is an array of Collection Items!
