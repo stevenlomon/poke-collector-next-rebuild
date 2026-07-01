@@ -5,6 +5,7 @@
 // No more handleNextPage functions. We just use standard Next.js `Link` tags that point to the next page's URL!
 import Link from "next/link";
 import { searchCards } from "@/lib/api";
+import { PokemonCard } from "@/lib/types";
 import SearchResultItem from "@/components/SearchResultItem";
 
 export default async function SearchPage({ searchParams }: { searchParams: Promise<{ q?: string, page?: string, limit?: string }>;}) {
@@ -44,7 +45,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
       <p>Showing results for "{query}" - {pagination.total} total results</p>
       
       <ul className="search-results-grid">
-        {searchResults.map((result: any) => (
+        {searchResults.map((result: PokemonCard) => (
           // Once again; no more "Backpack strat" haha! Next.js Link handles all of the caching
           <Link key={result.id} href={`/card/${result.id}`}>
             {/* <SearchResultItem resultItem={result} /> SearchResultItem and Card will be built out next */}
