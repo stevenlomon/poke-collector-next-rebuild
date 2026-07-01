@@ -29,7 +29,55 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
   const searchResults = data.results;
   const pagination = data.pagination;
 
+  // Our zero results state
+  if (searchResults.lenth === 0) {
+    return (
+      <div>
+        <h2>No Pokémon found in the tall grass!</h2>
+        <p>Try with another search query!</p>
+      </div>
+    );
+  }
+
   return (
-    <div>SearchPage</div>
-  )
+    <div>
+      <p>Showing results for "{query}" - {pagination.total} total results</p>
+      
+      <ul className="search-results-grid">
+        {searchResults.map((result: any) => (
+          // Once again; no more "Backpack strat" haha! Next.js Link handles all of the caching
+          <Link key={result.id} href={`/card/${result.id}`}>
+            {/* <SearchResultItem resultItem={result} /> SearchResultItem and Card will be built out next */}
+          </Link>
+        ))}
+      </ul>
+
+      {/* The Pagination Controls */}
+      <div className="pagination-controls">
+        {/* If we can go back, render a Link. If not, render a disabled button! */}
+        {pagination.page > 1 ? (
+          <Link 
+            className="pagination-btn" 
+            href={`/search?q=${query}&page=${page - 1}&limit=${limit}`}
+          >
+            Previous
+          </Link>
+        ) : (
+          <button className="pagination-btn" disabled>Previous</button>
+        )}
+
+        {/* If we can go forward, render a Link. If not, render a disabled button! */}
+        {pagination.page < pagination.total_pages ? (
+          <Link 
+            className="pagination-btn" 
+            href={`/search?q=${query}&page=${page + 1}&limit=${limit}`}
+          >
+            Next
+          </Link>
+        ) : (
+          <button className="pagination-btn" disabled>Next</button>
+        )}
+      </div>
+    </div>
+  );
 };
