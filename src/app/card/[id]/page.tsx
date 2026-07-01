@@ -1,9 +1,7 @@
 
 
-const CardDetailPage = () => {
+export default function DetailedCardPage() {
   return (
-    <div>CardDetailPage</div>
+    <div>DetailedCardPage</div>
   )
-}
-
-export default CardDetailPage
+};

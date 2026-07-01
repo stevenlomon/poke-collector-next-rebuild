@@ -1,9 +1,7 @@
 
 
-const EasterEggPage = () => {
+export default function EasterEggPage() {
   return (
     <div>EasterEggPage</div>
   )
-}
-
-export default EasterEggPage
+};

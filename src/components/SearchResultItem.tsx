@@ -1,9 +1,7 @@
-import React from 'react'
 
-const SearchResultItem = () => {
+
+export default function SearchResultItem() {
   return (
     <div>SearchResultItem</div>
   )
-}
-
-export default SearchResultItem
+};

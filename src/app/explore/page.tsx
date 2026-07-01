@@ -1,9 +1,7 @@
 
 
-const ExplorePage = () => {
+export default function ExplorePage() {
   return (
     <div>ExplorePage</div>
   )
-}
-
-export default ExplorePage
+};

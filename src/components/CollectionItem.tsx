@@ -12,7 +12,7 @@ interface CollectionItemProps {
   onDelete: (id: string) => void;
 }
 
-const CollectionItem = ({ card, onIncrease, onDecrease, onDelete }: CollectionItemProps) => {
+export default function CollectionItem({ card, onIncrease, onDecrease, onDelete }: CollectionItemProps) {
   return (
     // Re-used from the Vite React SPA. The Link is the only thing updated and is now Next native
     <div className={`collection-item ${card.isNew ? 'animate-in' : ''}`}>
@@ -30,6 +30,4 @@ const CollectionItem = ({ card, onIncrease, onDecrease, onDelete }: CollectionIt
       <button className="remove-btn" onClick={() => onDelete(card.id)}>Remove from collection</button>
     </div>
   )
-}
-
-export default CollectionItem
+};

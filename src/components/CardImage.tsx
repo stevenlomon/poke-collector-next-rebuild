@@ -17,5 +17,5 @@ export default function CardImage({ cardId, cardName }: CardImageProps) {
       height={350}
       className="card-image object-cover"
     />
-  );
-}
+  )
+};

@@ -2,10 +2,10 @@
 import { useState } from "react"
 import Link from "next/link"
 
-const Navbar = () => {
+export default function Navbar() {
   const [searchTerm, setSearchTerm] = useState('');
   const [isSearching, setIsSearching] = useState(false);
-
+  
   return (
     <nav>
       <Link href="/">MyPokéCollection</Link>
@@ -20,6 +20,4 @@ const Navbar = () => {
       </form>
     </nav>
   )
-}
-
-export default Navbar
+};

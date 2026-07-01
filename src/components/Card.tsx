@@ -5,7 +5,7 @@ interface CardProps {
   card: PokemonCard;
 }
 
-const Card = ({ card }: CardProps) => {
+export default function Card({ card }: CardProps) {
   return (
     // Completely unchanged from the Vite React SPA version with exception of the fallback improvement
     <div className="card-component">
@@ -15,6 +15,4 @@ const Card = ({ card }: CardProps) => {
       <CardImage cardId={card.id} cardName={card.card_info.name} />
     </div>
   )
-}
-
-export default Card
+};
