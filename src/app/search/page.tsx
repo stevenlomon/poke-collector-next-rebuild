@@ -24,7 +24,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
   }
 
   // The actual fetch now is just pure server-side awaiting! No useEffect and no loading states related to the data fetching!!
-  // If it fails, Next.js automatically catches it for us in errors.tsx!
+  // If it fails, Next.js automatically catches it for us in error.tsx! And all `await`-ing is intercepted by loading.tsx! 
   const data = await searchCards(query, page, limit);
   const searchResults = data.results;
   const pagination = data.pagination;

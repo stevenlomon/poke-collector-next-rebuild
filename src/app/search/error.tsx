@@ -1,6 +1,22 @@
 'use client'
-// Client component that is purely responsible for catching errors and displaying them!
+// Client component (uses `useEffect` and `onClick`) that is purely responsible for catching errors and displaying them!
 // Under the hood it uses React Error Boundaries which is advanced React I've never had a reason to touch haha
+
+// It wraps both our Search page *and* our Loading component:
+//{/* The Error Boundary intercepts any crashes from its children */}
+//  <NextJsErrorBoundary fallback={<Error />}>
+//    
+//    {/* Suspense intercepts any 'awaits' from its children */}
+//    <ReactSuspense fallback={<Loading />}>
+//      
+//      {/* Our actual page */}
+//      <SearchPage />
+//      
+//    </ReactSuspense>
+//    
+//  </NextJsErrorBoundary>
+
+// Just like I wrote in the Loading component; absolutely mindblowing engineering
 
 import { useEffect } from "react";
 
