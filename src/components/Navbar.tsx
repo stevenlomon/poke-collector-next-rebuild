@@ -51,7 +51,7 @@ export default function Navbar() {
   }, [searchTerm]); // Run every time there is a change in the searchTerm state variable
 
   // We still need a form submission function; now typed
-  function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) { // We *do* use FormEvent here! Despite VSCode saying it's deprecated. In the Browser's native DOM library, FormEvent is deprecated in favor of SubmitEvent. But in the React ecosystem, React.FormEvent<HTMLFormElement> is apparently still perfectly safe, valid and *not* deprecated.
     e.preventDefault();
 
     if (!searchTerm.trim()) return; // Same safety check; return early if there is no search term
@@ -62,17 +62,72 @@ export default function Navbar() {
   };
 
   return (
-    <nav>
+    <nav className="search-nav">
       <Link href="/">MyPokéCollection</Link>
-      <Link href="/explore">Explore Cards</Link>
-      <Link href="/create">Create Custom Card</Link>
-      <form>
+
+      <Link
+        href="/explore"
+        className="disabled-link"
+        onClick={(e) => e.preventDefault()}
+        title="Coming Soon!"
+      >
+        Explore Cards
+      </Link>
+      <Link
+        href="/create"
+        className="disabled-link"
+        onClick={(e) => e.preventDefault()}
+        title="Coming Soon!"
+      >
+        Create Custom Card
+      </Link>
+
+      <form onSubmit={handleSubmit}>
         <input type='text' placeholder='Search Pokémon...' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
         <button type='submit'>
           {/* To be swapped out with a Poké ball icon later */}
           {isSearching ? '🌀' : '🔍'}
         </button>
       </form>
+
+      {/* THE DROPDOWN */}
+      {isOpen && (
+        <div className="search-dropdown">
+          {isSearching ? (
+            <p className="dropdown-message">Locating Pokémon...</p>
+          ) : previews.length > 0 ? (
+            <ul className="preview-list">
+
+              {previews.map((card: PokemonCard) => ( // We could leave out `: PokemonCard` here and TS would infer the type from this line `const [previews, setPreviews] = useState<PokemonCard[]>([]);`
+                <li key={card.id} className="preview-item">
+                  <Link
+                    href={`/card/${card.id}`} // Next.js standard href
+                    onClick={() => setIsOpen(false)}
+                    className="preview-link"
+                    // The "Backpack" is gone! No more `state={{ cardData: card }}`
+                  >
+                    <strong>{card.card_info?.name}</strong> <br />
+                    <small className="preview-set-name">{card.card_info?.set_name}</small>
+                  </Link>
+                </li>
+              ))}
+
+              {/* The Goodreads-style "See all results" footer */}
+              <li className="preview-footer">
+                <Link
+                  href={`/search?q=${searchTerm}`}
+                  onClick={() => setIsOpen(false)}
+                  className="preview-footer-link"
+                >
+                  See all results for "{searchTerm}"
+                </Link>
+              </li>
+            </ul>
+          ) : (
+            <p className="dropdown-message">No Pokémon found in the tall grass.</p>
+          )}
+        </div>
+      )}
     </nav>
   )
 };
