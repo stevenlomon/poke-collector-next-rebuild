@@ -50,6 +50,17 @@ export default function Navbar() {
     }; 
   }, [searchTerm]); // Run every time there is a change in the searchTerm state variable
 
+  // We still need a form submission function; now typed
+  function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    if (!searchTerm.trim()) return; // Same safety check; return early if there is no search term
+    if (timeoutRef.current) clearTimeout(timeoutRef.current); // Updated safety for the clearTimeout!
+
+    setIsOpen(false); // Same important local state management to prevent the curtains from staying open when we return
+    router.push(`/search?q=${searchTerm}`); // Replaces `navigate(`/search?q=${searchTerm}`);`
+  };
+
   return (
     <nav>
       <Link href="/">MyPokéCollection</Link>
