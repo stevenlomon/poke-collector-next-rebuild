@@ -1,5 +1,5 @@
-import CardImage from "./CardImage";
-import { PokemonCard } from "@/lib/types";
+import CardImage from './CardImage';
+import { type PokemonCard } from '@/lib/types';
 
 interface CardProps {
   card: PokemonCard;

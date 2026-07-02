@@ -1,5 +1,5 @@
-import Card from "./Card"
-import { PokemonCard } from "@/lib/types"
+import Card from './Card';
+import { type PokemonCard } from '@/lib/types';
 
 // Receives a mapping of individual PokemonCards from the search page 
 // `{searchResults.map((result: PokemonCard) => (`

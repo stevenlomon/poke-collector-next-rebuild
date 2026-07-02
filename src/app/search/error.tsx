@@ -18,7 +18,7 @@
 
 // Just like I wrote in the Loading component; absolutely mindblowing engineering
 
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
 export default function Error({ error, reset }: { error: Error & { digest?: string }, reset: () => void }) { // "Expect an object that has everything a standard Error has, AND also allow it to have a digest property."
   useEffect(() => {

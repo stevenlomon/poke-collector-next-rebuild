@@ -1,8 +1,8 @@
 'use client'
 
-import { type CollectionItem as CardDataType } from "@/lib/types"
-import Link from "next/link"
-import CardImage from "./CardImage"
+import { type CollectionItem as CardDataType } from '@/lib/types';
+import Link from 'next/link';
+import CardImage from './CardImage';
 
 // Define the props the component expects, reusing our context type
 interface CollectionItemProps {

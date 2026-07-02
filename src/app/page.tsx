@@ -1,7 +1,7 @@
 'use client'
 
-import { useCollection } from "@/contexts/CollectionContext";
-import CollectionItem from "@/components/CollectionItem";
+import { useCollection } from '@/contexts/CollectionContext';
+import CollectionItem from '@/components/CollectionItem';
 
 export default function Home() {
   const { userCollection, increaseAmount, decreaseAmount, removeCardFromCollection } = useCollection();

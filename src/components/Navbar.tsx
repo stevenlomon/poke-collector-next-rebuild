@@ -1,10 +1,10 @@
 'use client' // Client component since we need to use `useState`, `useEffect`, `useRef` and `onChange`
 
-import { useState, useEffect, useRef } from "react"
-import Link from "next/link"
-import { useRouter } from "next/navigation"; // This replaces useNavigate
-import { searchCards } from "@/lib/api";
-import { PokemonCard } from "@/lib/types";
+import { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation'; // This replaces useNavigate
+import { searchCards } from '@/lib/api';
+import { type PokemonCard } from '@/lib/types';
 
 export default function Navbar() {
   const [searchTerm, setSearchTerm] = useState('');
