@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation'; // This replaces useNavigate
-import { searchCards } from '@/lib/api';
+// import { searchCards } from '@/lib/api'; // Not used! For an important reason!
 import { type PokemonCard } from '@/lib/types';
 
 export default function Navbar() {
@@ -30,9 +30,12 @@ export default function Navbar() {
       setIsSearching(true);
       setIsOpen(true);
 
-      // Do the fetching business. Completely unchanged
+      // Do the fetching business. "Completely unchanged"; it is unchanged because we don't want our API in the Browser haha! Changed for a good reason
       try {
-        const data = await searchCards(searchTerm, 1, 5); // Fetch exactly page 1, limit 5 for the preview
+        const res = await fetch(`/api/search?q=${searchTerm}`); // If we want our API key securely on our server, we can't use searchCards directly here! We need to call our Route Handler instead!
+        if (!res.ok) throw new Error("Network response was not ok.");
+
+        const data = await res.json();
         setPreviews(data.results || []);
       } catch (err) {
         console.error("Preview fetch failed", err);
