@@ -48,7 +48,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
         {searchResults.map((result: PokemonCard) => (
           // Once again; no more "Backpack strat" haha! Next.js Link handles all of the caching
           <Link key={result.id} href={`/card/${result.id}`}>
-            {/* <SearchResultItem resultItem={result} /> SearchResultItem and Card will be built out next */}
+            <SearchResultItem resultItem={result} />
           </Link>
         ))}
       </ul>
